@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn41q7ln0xxes"]
+
+[ext_resource type="Script" uid="uid://difmx7fvftbhq" path="res://personaje.gd" id="1_ltgau"]
+[ext_resource type="Texture2D" uid="uid://c1usy5xrphtny" path="res://Hero_006_Idle.png" id="2_yppqc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gj0cs"]
+radius = 9.0
+height = 24.0
+
+[node name="Personaje" type="CharacterBody2D"]
+script = ExtResource("1_ltgau")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_gj0cs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yppqc")
+hframes = 6
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)

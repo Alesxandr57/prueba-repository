@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://om47ixc2y8ct"]
+
+[ext_resource type="PackedScene" uid="uid://dn41q7ln0xxes" path="res://personaje.tscn" id="1_6vlvy"]
+[ext_resource type="PackedScene" uid="uid://b8ew6paw14blw" path="res://plataforma.tscn" id="2_wyp7x"]
+[ext_resource type="Texture2D" uid="uid://ceelt7y81dg14" path="res://Door.png" id="3_xy10i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ip57o"]
+size = Vector2(1147, 328)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8e3ws"]
+size = Vector2(26, 25)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="reset_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="reset_area"]
+position = Vector2(575.5, 484)
+shape = SubResource("RectangleShape2D_ip57o")
+
+[node name="door" type="Area2D" parent="."]
+position = Vector2(360, 56)
+
+[node name="Sprite2D" type="Sprite2D" parent="door"]
+position = Vector2(38.5, 21)
+scale = Vector2(1.03125, 1)
+texture = ExtResource("3_xy10i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door"]
+position = Vector2(39, 22.5)
+shape = SubResource("RectangleShape2D_8e3ws")
+
+[node name="Personaje" parent="." instance=ExtResource("1_6vlvy")]
+position = Vector2(160, 112)
+
+[node name="Plataforma" parent="." instance=ExtResource("2_wyp7x")]
+position = Vector2(280, 176)
+tipo = 1
+
+[node name="Plataforma2" parent="." instance=ExtResource("2_wyp7x")]
+position = Vector2(400, 128)
+tipo = 2
+
+[node name="Plataforma3" parent="." instance=ExtResource("2_wyp7x")]
+position = Vector2(72, 200)
+tipo = 3
+
+[node name="Plataforma4" parent="." instance=ExtResource("2_wyp7x")]
+position = Vector2(160, 136)
+
+[connection signal="body_entered" from="reset_area" to="Personaje" method="_on_reset_area_body_entered"]
+[connection signal="body_entered" from="door" to="Personaje" method="_on_door_body_entered"]
